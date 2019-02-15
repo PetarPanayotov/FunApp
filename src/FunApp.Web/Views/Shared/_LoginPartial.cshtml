@@ -1,7 +1,8 @@
 @using Microsoft.AspNetCore.Identity
+@using FunApp.Models
 
-@inject SignInManager<IdentityUser> SignInManager
-@inject UserManager<IdentityUser> UserManager
+@inject SignInManager<FunAppUser> SignInManager
+@inject UserManager<FunAppUser> UserManager
 
 @if (SignInManager.IsSignedIn(User))
 {
