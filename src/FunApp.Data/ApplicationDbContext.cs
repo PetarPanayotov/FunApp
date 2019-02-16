@@ -13,5 +13,9 @@ namespace FunApp.Web.Data
             : base(options)
         {
         }
+
+        public DbSet<Category> Categories { get; set; }
+
+        public DbSet<Joke> Jokes{ get; set; }
     }
 }

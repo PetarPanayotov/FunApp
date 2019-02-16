@@ -1,5 +1,6 @@
-﻿using FunApp.Web.Data;
-using Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http;
+﻿using AngleSharp.Html.Parser;
+using FunApp.Models;
+using FunApp.Web.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -16,6 +17,7 @@ namespace Sandbox
     {
         static void Main(string[] args)
         {
+            Console.OutputEncoding = Encoding.UTF8;
             Console.WriteLine($"{typeof(Program).Namespace} ({string.Join(" ", args)}) starts working...");
             var serviceCollection = new ServiceCollection();
             ConfigureServices(serviceCollection);
@@ -30,8 +32,61 @@ namespace Sandbox
 
         private static void SandboxCode(IServiceProvider serviceProvider)
         {
-            var db = serviceProvider.GetService<ApplicationDbContext>();
-            Console.WriteLine(db.Users.Count());
+            var context = serviceProvider.GetService<ApplicationDbContext>();
+            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+            var parser = new HtmlParser();
+            var webClient = new WebClient { Encoding = Encoding.GetEncoding("windows-1251") };
+
+            for (var i = 3000; i < 4233; i++)
+            {
+                var url = "http://fun.dir.bg/vic_open.php?id=" + i;
+                string html = null;
+                for (int j = 0; j < 10; j++)
+                {
+                    try
+                    {
+                        html = webClient.DownloadString(url);
+                        break;
+                    }
+                    catch (Exception)
+                    {
+                        Thread.Sleep(10000);
+                    }
+                }
+
+                if (string.IsNullOrWhiteSpace(html))
+                {
+                    continue;
+                }
+
+                var document = parser.ParseDocument(html);
+                var jokeContent = document.QuerySelector("#newsbody")?.TextContent?.Trim();
+                var categoryName = document.QuerySelector(".tag-links-left a")?.TextContent?.Trim();
+
+                if (!string.IsNullOrWhiteSpace(jokeContent) &&
+                    !string.IsNullOrWhiteSpace(categoryName))
+                {
+                    var category = context.Categories.FirstOrDefault(x => x.Name == categoryName);
+                    if (category == null)
+                    {
+                        category = new Category
+                        {
+                            Name = categoryName,
+                        };
+                    }
+
+                    var joke = new Joke()
+                    {
+                        Category = category,
+                        Content = jokeContent,
+                    };
+
+                    context.Jokes.Add(joke);
+                    context.SaveChanges();
+                }
+
+                Console.WriteLine($"{i} => {categoryName}");
+            }
         }
 
         private static void ConfigureServices(ServiceCollection services)
