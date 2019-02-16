@@ -1,4 +1,6 @@
 ﻿using AngleSharp.Html.Parser;
+using FunApp.Common;
+using FunApp.Data;
 using FunApp.Models;
 using FunApp.Web.Data;
 using Microsoft.EntityFrameworkCore;
@@ -99,6 +101,8 @@ namespace Sandbox
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddScoped(typeof(IRepository<>), typeof(DbRepository<>));
         }
     }
 }

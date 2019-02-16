@@ -5,19 +5,42 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using FunApp.Web.Models;
+using FunApp.Common;
+using FunApp.Models;
+using FunApp.Web.Models.Home;
 
 namespace FunApp.Web.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly IRepository<Joke> jokesRepository;
+
+        public HomeController(IRepository<Joke> jokesRepository)
+        {
+            this.jokesRepository = jokesRepository;
+        }
+
         public IActionResult Index()
         {
-            return View();
+            var jokes = this.jokesRepository.All()
+                .OrderBy(x => Guid.NewGuid())
+                .Select(x => new IndexJokeViewModel
+            {
+                Content = x.Content,
+                CategoryName = x.Category.Name,
+            });
+
+            var viewModel = new IndexViewModel
+            {
+                Jokes = jokes
+            };
+
+            return View(viewModel);
         }
 
         public IActionResult About()
         {
-            ViewData["Message"] = "Your application description page.";
+            ViewData["Message"] = "My application has " + this.jokesRepository.All().Count() + " Jokes";
 
             return View();
         }

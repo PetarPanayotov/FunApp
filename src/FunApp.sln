@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2050
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FunApp.Web", "FunApp.Web\FunApp.Web.csproj", "{A24C8522-E438-43AA-9175-6F7A314E5BA8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FunApp.Web", "FunApp.Web\FunApp.Web.csproj", "{A24C8522-E438-43AA-9175-6F7A314E5BA8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FunApp.Data", "FunApp.Data\FunApp.Data.csproj", "{398F08CB-BAD5-4705-A273-C7202614BF36}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FunApp.Data", "FunApp.Data\FunApp.Data.csproj", "{398F08CB-BAD5-4705-A273-C7202614BF36}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FunApp.Models", "FunApp.Models\FunApp.Models.csproj", "{D7CFE656-9390-4447-9765-1486C4C31AE9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FunApp.Models", "FunApp.Models\FunApp.Models.csproj", "{D7CFE656-9390-4447-9765-1486C4C31AE9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sandbox", "Sandbox\Sandbox.csproj", "{8AF3D66F-126C-41CF-9C36-1C1F84385D35}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sandbox", "Sandbox\Sandbox.csproj", "{8AF3D66F-126C-41CF-9C36-1C1F84385D35}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FunApp.Common", "FunApp.Common\FunApp.Common.csproj", "{112BC886-3F13-4F78-BAAF-BADA95FC20E3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{8AF3D66F-126C-41CF-9C36-1C1F84385D35}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8AF3D66F-126C-41CF-9C36-1C1F84385D35}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8AF3D66F-126C-41CF-9C36-1C1F84385D35}.Release|Any CPU.Build.0 = Release|Any CPU
+		{112BC886-3F13-4F78-BAAF-BADA95FC20E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{112BC886-3F13-4F78-BAAF-BADA95FC20E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{112BC886-3F13-4F78-BAAF-BADA95FC20E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{112BC886-3F13-4F78-BAAF-BADA95FC20E3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
