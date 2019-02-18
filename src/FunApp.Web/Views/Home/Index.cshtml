@@ -1,16 +1,16 @@
-﻿@model FunApp.Web.Models.Home.IndexViewModel
+﻿@model FunApp.Services.Models.Home.IndexViewModel
 
 <div class="row">
     @foreach(var joke in Model.Jokes)
     {
-    <div class="col-md-4">
-        <div class="panel panel-default">
-            <div class="panel-body">
-                @joke.Content
-            </div>
+        <div class="col-md-4">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    @joke.Content
+                </div>
 
-            <div class="panel-footer">@joke.CategoryName</div>
+                <div class="panel-footer">@joke.CategoryName</div>
+            </div>
         </div>
-    </div>
     }
 </div>

@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\FunApp.Data\FunApp.Data.csproj" />
+    <ProjectReference Include="..\FunApp.Services\FunApp.Services.csproj" />
   </ItemGroup>
 
 </Project>
