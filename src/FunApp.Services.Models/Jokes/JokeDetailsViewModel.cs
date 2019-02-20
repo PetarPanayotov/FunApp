@@ -1,14 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Text;
 
-namespace FunApp.Services.Models.Home
+namespace FunApp.Services.Models.Jokes
 {
-    public class IndexJokeViewModel
+    public class JokeDetailsViewModel
     {
-        public int Id { get; set; }
-
         public string Content { get; set; }
 
         public string CategoryName { get; set; }
