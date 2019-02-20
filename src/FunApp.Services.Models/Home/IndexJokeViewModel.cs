@@ -20,5 +20,13 @@ namespace FunApp.Services.Models.Home
         {
             // configuration.CreateMap<Joke, IndexJokeViewModel>().ForMember(x => x.CategoryName, x => x.MapFrom(j => j.Category.Name))
         }
+
+        public string HtmlContent // replace new line in html 
+        {
+            get
+            {
+                return this.Content.Replace("\n", "<br />\n");
+            }
+        }
     }
 }
