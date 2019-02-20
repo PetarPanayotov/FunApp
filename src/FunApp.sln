@@ -13,9 +13,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sandbox", "Sandbox\Sandbox.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FunApp.Common", "FunApp.Common\FunApp.Common.csproj", "{112BC886-3F13-4F78-BAAF-BADA95FC20E3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FunApp.Services", "FunApp.Services\FunApp.Services.csproj", "{9D4071AA-3355-4F1F-AE98-BC8D462BB104}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FunApp.Services", "FunApp.Services\FunApp.Services.csproj", "{9D4071AA-3355-4F1F-AE98-BC8D462BB104}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FunApp.Services.Models", "FunApp.Services.Models\FunApp.Services.Models.csproj", "{B4B1DBBA-D594-4B6C-B801-0804AF78A018}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FunApp.Services.Models", "FunApp.Services.Models\FunApp.Services.Models.csproj", "{B4B1DBBA-D594-4B6C-B801-0804AF78A018}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FunApp.Services.Mapping", "FunApp.Services.Mapping\FunApp.Services.Mapping.csproj", "{BFF3F141-06CB-4E3C-94B6-9DC34C774892}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{B4B1DBBA-D594-4B6C-B801-0804AF78A018}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B4B1DBBA-D594-4B6C-B801-0804AF78A018}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B4B1DBBA-D594-4B6C-B801-0804AF78A018}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BFF3F141-06CB-4E3C-94B6-9DC34C774892}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BFF3F141-06CB-4E3C-94B6-9DC34C774892}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BFF3F141-06CB-4E3C-94B6-9DC34C774892}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BFF3F141-06CB-4E3C-94B6-9DC34C774892}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

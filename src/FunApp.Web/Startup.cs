@@ -16,6 +16,9 @@ using FunApp.Models;
 using FunApp.Common;
 using FunApp.Data;
 using FunApp.Services;
+using FunApp.Services.Mapping;
+using FunApp.Services.Models.Home;
+using FunApp.Services.Models.Jokes;
 
 namespace FunApp.Web
 {
@@ -31,6 +34,11 @@ namespace FunApp.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            AutoMapperConfig.RegisterMappings(
+                typeof(IndexJokeViewModel).Assembly,
+                typeof(CreateJokeInputModel).Assembly
+                );
+
             services.Configure<CookiePolicyOptions>(options =>
             {
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.

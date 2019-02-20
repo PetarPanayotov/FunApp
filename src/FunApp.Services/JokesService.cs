@@ -1,5 +1,6 @@
 ﻿using FunApp.Common;
 using FunApp.Models;
+using FunApp.Services.Mapping;
 using FunApp.Services.Models.Home;
 using FunApp.Services.Models.Jokes;
 using System;
@@ -24,12 +25,13 @@ namespace FunApp.Services
         {
             var jokes = this.jokesRepository.All()
               .OrderBy(x => Guid.NewGuid())
-              .Select(x => new IndexJokeViewModel
+              .To<IndexJokeViewModel>().Take(count).ToList();
+           /*   .Select(x => new IndexJokeViewModel
               {
                   Id = x.Id,
                   Content = x.Content,
                   CategoryName = x.Category.Name,
-              }).Take(count).ToList();
+              }).Take(count).ToList();*/
 
             return jokes;
         }
@@ -55,11 +57,14 @@ namespace FunApp.Services
 
         public JokeDetailsViewModel GetJokeById(int id)
         {
-            var joke = this.jokesRepository.All().Where(x => x.Id == id).Select(x => new JokeDetailsViewModel()
-            {
-                Content = x.Content,
-                CategoryName = x.Category.Name
-            }).FirstOrDefault();
+            var joke = this.jokesRepository.All().Where(x => x.Id == id)
+                /* .Select(x => new JokeDetailsViewModel()
+                 {
+                     Content = x.Content,
+                     CategoryName = x.Category.Name
+                 }).FirstOrDefault(); */
+                .To<JokeDetailsViewModel>()
+                .FirstOrDefault();
 
             return joke;
         }

@@ -5,6 +5,7 @@ using System.Text;
 using FunApp.Common;
 using FunApp.Models;
 using FunApp.Services.Models;
+using FunApp.Services.Models.Categories;
 
 namespace FunApp.Services
 {
@@ -17,10 +18,10 @@ namespace FunApp.Services
             this.categoriesRepository = categoriesRepository;
         }
 
-        public IEnumerable<IdAndNameViewModel> GetAll()
+        public IEnumerable<CategoryIdAndNameViewModel> GetAll()
         {
             var categories = this.categoriesRepository.All().OrderBy(x => x.Name)
-                .Select(x => new IdAndNameViewModel { Id = x.Id, Name = x.Name })
+                .Select(x => new CategoryIdAndNameViewModel { Id = x.Id, Name = x.Name })
                 .ToList();
 
             return categories;
