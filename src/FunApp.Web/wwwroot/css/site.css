@@ -35,3 +35,13 @@ body {
         display: none;
     }
 }
+
+.col-lg-9 {
+    margin-top: 25px;
+}
+
+.panel-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

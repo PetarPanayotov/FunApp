@@ -15,19 +15,23 @@ namespace FunApp.Web.Controllers
     public class HomeController : Controller
     {
         private readonly IJokesService jokesService;
+        private readonly ICategoriesService categoriesService;
 
-        public HomeController(IJokesService jokesService)
+        public HomeController(IJokesService jokesService, ICategoriesService categoriesService)
         {
             this.jokesService = jokesService;
+            this.categoriesService = categoriesService;
         }
 
         public IActionResult Index()
         {
             var jokes = this.jokesService.GetRandomJokes(20);
+            var categories = this.categoriesService.GetAll();
 
             var viewModel = new IndexViewModel
             {
-                Jokes = jokes
+                Jokes = jokes,
+                Categories = categories
             };
 
             return View(viewModel);

@@ -68,5 +68,15 @@ namespace FunApp.Services
 
             return joke;
         }
+
+        public IEnumerable<IndexJokeViewModel> GetJokesByCategory(int id, int count)
+        {
+            var jokes = this.jokesRepository.All()
+             .OrderBy(x => Guid.NewGuid())
+             .Where(x => x.CategoryId == id)
+             .To<IndexJokeViewModel>().Take(count).ToList();
+
+            return jokes;
+        }
     }
 }

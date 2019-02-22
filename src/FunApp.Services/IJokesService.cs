@@ -15,5 +15,7 @@ namespace FunApp.Services
         Task<int> Create(int CategoryId, string content);
 
         JokeDetailsViewModel GetJokeById(int id);
+
+        IEnumerable<IndexJokeViewModel> GetJokesByCategory(int id, int count);
     }
 }
