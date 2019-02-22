@@ -1,5 +1,10 @@
 ﻿@model FunApp.Services.Models.Home.IndexViewModel
 
+@if(TempData["CategoryName"] != null)
+{
+    <h1 class="text-center">Record @TempData["CategoryName"] has been created</h1>
+}
+
 <div class="col-lg-9">
     @foreach (var joke in Model.Jokes)
     {

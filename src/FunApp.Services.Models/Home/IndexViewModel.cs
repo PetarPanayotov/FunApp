@@ -12,6 +12,11 @@ namespace FunApp.Services.Models.Home
         public IEnumerable<IndexJokeViewModel> Jokes { get; set; }
 
         public IEnumerable<CategoryIdAndNameViewModel> Categories { get; set; }
+
+        public object ToPagedList(int pageNumber, int v)
+        {
+            throw new NotImplementedException();
+        }
     }
 
     

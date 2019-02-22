@@ -9,6 +9,7 @@ using FunApp.Common;
 using FunApp.Models;
 using FunApp.Services;
 using FunApp.Services.Models.Home;
+using X.PagedList;
 
 namespace FunApp.Web.Controllers
 {

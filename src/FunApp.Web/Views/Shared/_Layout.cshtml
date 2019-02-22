@@ -35,7 +35,9 @@
 
                     @if (this.User.Identity.IsAuthenticated)
                     {
-                        <li><a asp-area="" asp-controller="Jokes" asp-action="Create">Create</a></li>
+                        <li><a asp-area="" asp-controller="Jokes" asp-action="Create">Create Joke</a></li>
+
+                        <li><a asp-area="" asp-controller="Categories" asp-action="Create">Create Category</a></li>
                     }
                 </ul>
                 <partial name="_LoginPartial" />

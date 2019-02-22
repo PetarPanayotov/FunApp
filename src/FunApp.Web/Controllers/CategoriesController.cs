@@ -4,7 +4,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using FunApp.Services;
 using FunApp.Services.Models.Home;
+using FunApp.Web.Models.Categories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using X.PagedList;
 
 namespace FunApp.Web.Controllers
 {
@@ -31,6 +34,27 @@ namespace FunApp.Web.Controllers
             };
 
             return View(viewModel);
+        }
+
+        [Authorize]
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Create(CreateCategoryInputModel input)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                return this.View(input);
+            }
+
+            var name = await this.categoriesService.Create(input.CategoryName);
+
+            TempData["CategoryName"] = name;
+
+            return this.RedirectToAction("Index","Home");
         }
     }
 }

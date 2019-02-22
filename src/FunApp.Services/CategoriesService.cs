@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using FunApp.Common;
 using FunApp.Models;
 using FunApp.Services.Models;
@@ -30,6 +31,24 @@ namespace FunApp.Services
         public bool IsCategoryIdValid(int categoryId)
         {
             return this.categoriesRepository.All().Any(x => x.Id == categoryId);
+        }
+
+        public bool IsCategoryNameValid(string categoryName)
+        {
+            return this.categoriesRepository.All().Any(x => x.Name == categoryName);
+        }
+
+        public async Task<string> Create(string categoryName)
+        {
+            var category = new Category
+            { 
+                Name = categoryName
+            };
+
+            await this.categoriesRepository.AddAsync(category);
+            await this.categoriesRepository.SaveChangesAsync();
+
+            return category.Name;
         }
     }
 }
