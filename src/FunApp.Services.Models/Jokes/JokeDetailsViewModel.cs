@@ -9,11 +9,20 @@ namespace FunApp.Services.Models.Jokes
 {
     public class JokeDetailsViewModel : IMapFrom<Joke>
     {
+        public int Id { get; set; }
 
-        [DisplayName("Content")]
         public string Content { get; set; }
 
-        [DisplayName("Category")]
         public string CategoryName { get; set; }
+
+        public int ratingJokeByUser { get; set; }
+
+        public string HtmlContent // replace new line in html 
+        {
+            get
+            {
+                return this.Content.Replace("\n", "<br />\n");
+            }
+        }
     }
 }

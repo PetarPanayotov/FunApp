@@ -16,6 +16,8 @@ namespace FunApp.Services.Models.Home
 
         public string CategoryName { get; set; }
 
+        public int Rating { get; set; }
+
         public void CreateMappings(IMapperConfigurationExpression configuration)
         {
             // configuration.CreateMap<Joke, IndexJokeViewModel>().ForMember(x => x.CategoryName, x => x.MapFrom(j => j.Category.Name))

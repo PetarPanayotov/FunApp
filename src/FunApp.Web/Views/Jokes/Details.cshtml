@@ -1,29 +1,82 @@
-﻿@model FunApp.Services.Models.Jokes.JokeDetailsViewModel
+﻿@model FunApp.Services.Models.Jokes.DetailsViewModel
 
 @{
     ViewData["Title"] = "Details";
 }
 
-<h2>Details</h2>
+<h2>@ViewData["Title"]</h2>
 
 <div>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Content)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Content)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.CategoryName)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.CategoryName)
-        </dd>
-    </dl>
+
+    @Html.Raw(Model.Joke.HtmlContent)
+     
+    <h5>Category: @Html.DisplayFor(model => model.Joke.CategoryName)</h5>
+
+</div>
+
+<div class="rating-stars">
+    <ul class="list-unstyled" id="stars">
+        @for (var i = 1; i <=5; i++)
+        {
+            @if (i <= Model.VoteUser)
+            {
+                <li class="star selected" data-value="@i">
+                    <i class="fa fa-star fa-fw"></i>
+                </li>
+            }
+            else
+            {
+                <li class="star" data-value="@i">
+                    <i class="fa fa-star fa-fw"></i>
+                </li>
+            }
+        }
+    </ul>
 </div>
 
 <div>
     <a asp-action="Index" asp-controller="Home">Back to Index</a>
 </div>
+
+<script>
+$(document).ready(function () {
+
+    /* 1. Visualizing things on Hover - See next part for action on click */
+    $('#stars li').on('mouseover', function () {
+        var onStar = parseInt($(this).data('value')); // The star currently mouse on
+
+        $(this).parent().children('li.star').each(function (e) {
+            if (e < onStar) {
+                $(this).addClass('hover');
+            }
+            else {
+                $(this).removeClass('hover');
+            }
+        });
+
+    }).on('mouseout', function () {
+        $(this).parent().children('li.star').each(function (e) {
+            $(this).removeClass('hover');
+            });
+        });
+
+    /* 2. Action to perform on click */
+    $('#stars li').on('click', function () {
+        var onStar = parseInt($(this).data('value'), 10); // The star currently selected
+        var stars = $(this).parent().children('li.star');
+        var jokeId = "@Model.Joke.Id";
+
+        $.post("/Jokes/RateJoke", { jokeId: jokeId, rating: onStar })
+            .done(function () {
+                for (i = 0; i < stars.length; i++) {
+                    $(stars[i]).removeClass('selected');
+                }
+
+                for (i = 0; i < onStar; i++) {
+                    $(stars[i]).addClass('selected');
+                }
+            });
+    });
+});
+</script>

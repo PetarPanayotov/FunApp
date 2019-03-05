@@ -3,6 +3,7 @@ using FunApp.Models;
 using FunApp.Services.Mapping;
 using FunApp.Services.Models.Home;
 using FunApp.Services.Models.Jokes;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -57,7 +58,9 @@ namespace FunApp.Services
 
         public JokeDetailsViewModel GetJokeById(int id)
         {
-            var joke = this.jokesRepository.All().Where(x => x.Id == id)
+            var joke = this.jokesRepository
+                .All()
+                .Where(x => x.Id == id)
                 /* .Select(x => new JokeDetailsViewModel()
                  {
                      Content = x.Content,
@@ -77,6 +80,20 @@ namespace FunApp.Services
              .To<IndexJokeViewModel>().Take(count).ToList();
 
             return jokes;
+        }
+
+        public void UpdateRatingJoke(int jokeId, int rating)
+        {
+            var joke = this.jokesRepository.All()
+               .Where(j => j.Id == jokeId)
+               .FirstOrDefault();
+
+            if(joke!=null)
+            {
+                joke.Rating += rating;
+                this.jokesRepository.Update(joke);
+                this.jokesRepository.SaveChangesAsync();
+            }
         }
     }
 }

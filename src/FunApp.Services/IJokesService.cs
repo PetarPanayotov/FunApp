@@ -17,5 +17,7 @@ namespace FunApp.Services
         JokeDetailsViewModel GetJokeById(int id);
 
         IEnumerable<IndexJokeViewModel> GetJokesByCategory(int id, int count);
+
+        void UpdateRatingJoke(int jokeId, int rating);
     }
 }

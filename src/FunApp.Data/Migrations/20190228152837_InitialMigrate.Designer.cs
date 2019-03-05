@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FunApp.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20190220085528_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20190228152837_InitialMigrate")]
+    partial class InitialMigrate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -95,11 +95,34 @@ namespace FunApp.Data.Migrations
 
                     b.Property<string>("Content");
 
+                    b.Property<int>("Rating");
+
                     b.HasKey("Id");
 
                     b.HasIndex("CategoryId");
 
                     b.ToTable("Jokes");
+                });
+
+            modelBuilder.Entity("FunApp.Models.Vote", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("FunAppUserId");
+
+                    b.Property<int>("JokeId");
+
+                    b.Property<int>("RatingVote");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FunAppUserId");
+
+                    b.HasIndex("JokeId");
+
+                    b.ToTable("Votes");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -221,6 +244,18 @@ namespace FunApp.Data.Migrations
                     b.HasOne("FunApp.Models.Category", "Category")
                         .WithMany()
                         .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("FunApp.Models.Vote", b =>
+                {
+                    b.HasOne("FunApp.Models.FunAppUser", "FunAppUser")
+                        .WithMany()
+                        .HasForeignKey("FunAppUserId");
+
+                    b.HasOne("FunApp.Models.Joke", "Joke")
+                        .WithMany()
+                        .HasForeignKey("JokeId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

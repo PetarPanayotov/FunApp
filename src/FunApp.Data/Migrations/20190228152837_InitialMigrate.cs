@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace FunApp.Data.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class InitialMigrate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -173,7 +173,8 @@ namespace FunApp.Data.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Content = table.Column<string>(nullable: true),
-                    CategoryId = table.Column<int>(nullable: false)
+                    CategoryId = table.Column<int>(nullable: false),
+                    Rating = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -182,6 +183,33 @@ namespace FunApp.Data.Migrations
                         name: "FK_Jokes_Categories_CategoryId",
                         column: x => x.CategoryId,
                         principalTable: "Categories",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Votes",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    RatingVote = table.Column<int>(nullable: false),
+                    FunAppUserId = table.Column<string>(nullable: true),
+                    JokeId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Votes", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Votes_AspNetUsers_FunAppUserId",
+                        column: x => x.FunAppUserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Votes_Jokes_JokeId",
+                        column: x => x.JokeId,
+                        principalTable: "Jokes",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -229,6 +257,16 @@ namespace FunApp.Data.Migrations
                 name: "IX_Jokes_CategoryId",
                 table: "Jokes",
                 column: "CategoryId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Votes_FunAppUserId",
+                table: "Votes",
+                column: "FunAppUserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Votes_JokeId",
+                table: "Votes",
+                column: "JokeId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -249,13 +287,16 @@ namespace FunApp.Data.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Jokes");
+                name: "Votes");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "Jokes");
 
             migrationBuilder.DropTable(
                 name: "Categories");

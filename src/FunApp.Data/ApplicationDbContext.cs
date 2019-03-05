@@ -16,6 +16,8 @@ namespace FunApp.Web.Data
 
         public DbSet<Category> Categories { get; set; }
 
-        public DbSet<Joke> Jokes{ get; set; }
+        public DbSet<Joke> Jokes { get; set; }
+
+        public DbSet<Vote> Votes { get; set; }
     }
 }

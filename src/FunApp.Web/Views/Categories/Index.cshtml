@@ -1,11 +1,8 @@
-﻿@using X.PagedList.Mvc.Core; //import this so we get our HTML Helper
-@using X.PagedList; //import this so we can cast our list to IPagedList (only necessary because ViewBag is dynamic)
+﻿@model FunApp.Services.Models.Home.IndexViewModel
 
-@model FunApp.Services.Models.Home.IndexViewModel
-
-<div class="col-lg-9">
+            <div class="col-lg-9">
     @foreach (var joke in Model.Jokes)
-    {
+        {
         <div class="panel panel-default">
             <div class="panel-body">
                 @Html.Raw(joke.HtmlContent)
@@ -25,7 +22,7 @@
 
     <ol class="list-unstyled">
         @foreach (var category in Model.Categories)
-        {
+    {
             <li>
                 <h4>
                     <a asp-controller="Categories" asp-action="Index" asp-route-id="@category.Id">@category.Name</a>
@@ -34,7 +31,5 @@
         }
     </ol>
 </div>
-
-@Html.PagedListPager((IPagedList)Model.Jokes, page => Url.Action("Index", new { page }))
 
 

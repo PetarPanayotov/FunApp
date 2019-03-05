@@ -26,6 +26,11 @@ namespace FunApp.Data
             return this.dbSet.AddAsync(entity);
         }
 
+        public void Update(TEntity entity)
+        {
+            this.context.SaveChanges();
+        }
+
         public IQueryable<TEntity> All()
         {
             return this.dbSet;
