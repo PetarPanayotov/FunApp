@@ -17,7 +17,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FunApp.Services", "FunApp.S
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FunApp.Services.Models", "FunApp.Services.Models\FunApp.Services.Models.csproj", "{B4B1DBBA-D594-4B6C-B801-0804AF78A018}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FunApp.Services.Mapping", "FunApp.Services.Mapping\FunApp.Services.Mapping.csproj", "{BFF3F141-06CB-4E3C-94B6-9DC34C774892}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FunApp.Services.Mapping", "FunApp.Services.Mapping\FunApp.Services.Mapping.csproj", "{BFF3F141-06CB-4E3C-94B6-9DC34C774892}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{3B001893-13A6-4B18-8D21-6ED0990BC3AC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FunApp.Services.Tests", "FunApp.Services.Tests\FunApp.Services.Tests.csproj", "{6E446AEF-E263-4FAE-9851-B5EFBB6EB614}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,9 +61,16 @@ Global
 		{BFF3F141-06CB-4E3C-94B6-9DC34C774892}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BFF3F141-06CB-4E3C-94B6-9DC34C774892}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BFF3F141-06CB-4E3C-94B6-9DC34C774892}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6E446AEF-E263-4FAE-9851-B5EFBB6EB614}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E446AEF-E263-4FAE-9851-B5EFBB6EB614}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E446AEF-E263-4FAE-9851-B5EFBB6EB614}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E446AEF-E263-4FAE-9851-B5EFBB6EB614}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{6E446AEF-E263-4FAE-9851-B5EFBB6EB614} = {3B001893-13A6-4B18-8D21-6ED0990BC3AC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1DB00A2C-DA62-4FC3-AA4D-F017F5C23A93}

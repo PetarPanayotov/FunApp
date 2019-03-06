@@ -14,14 +14,10 @@ namespace FunApp.Services
     public class VotesService : IVotesService
     {
         private readonly IRepository<Vote> votesRepository;
-        private readonly UserManager<FunAppUser> userManager;
-        private readonly SignInManager<FunAppUser> signInManager;
 
-        public VotesService(IRepository<Vote> votesRepository, UserManager<FunAppUser> userManager, SignInManager<FunAppUser> signInManager)
+        public VotesService(IRepository<Vote> votesRepository)
         {
             this.votesRepository = votesRepository;
-            this.userManager = userManager;
-            this.signInManager = signInManager;
         }
 
         public bool AddRatingToJoke(int jokeId, int rating, string userId)
